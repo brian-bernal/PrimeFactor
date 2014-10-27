@@ -28,7 +28,7 @@ public class Main {
         int lastDigit = Integer.parseInt(number.charAt(number.length() - 1) + "");  //Last digit
         boolean prime = false;
 
-
+//ok
         if (num == 7 || num == 2 || num == 3 || num == 5)
             prime = true;
         else if (lastDigit % 2 == 0)   //if number ends in 0, 2, 4, 6, or 8 it is even and not prime
