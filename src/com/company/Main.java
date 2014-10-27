@@ -27,7 +27,7 @@ public class Main {
         String number = num + "";
         int lastDigit = Integer.parseInt(number.charAt(number.length() - 1) + "");  //Last digit
         boolean prime = false;
-        System.out.println("num is: " + num + " and PF is: " + largestPF);
+
 
         if (num == 7 || num == 2 || num == 3 || num == 5)
             prime = true;
@@ -55,7 +55,6 @@ public class Main {
             if (num > largestPF)
                 largestPF = (int)num;//largest factor shouldn't go beyond 2billion as that would be close to largest long
         }
-        System.out.println("LPF: " + largestPF);
 
 //if not prime, factor to find greatest prime factor
 //factor function
@@ -65,14 +64,14 @@ public class Main {
     public boolean isPrimeDivisible(long num) {
         int max = (int) Math.sqrt(num);
         for (int i = 7; i < max; i += 2) {
-            if (isPrime(i)) {
+           // if (isPrime(i)) {
                 if (num % i == 0) {
                     if (i > largestPF)
                         largestPF = i;
                     //primeDiv = num/i;
                     isPrime(num/i);
                     return true;
-                }
+             //   }
             }
         }
         return false;
