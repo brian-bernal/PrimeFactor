@@ -1,11 +1,13 @@
 //Ok, I'm starting to get the hang of it. Commit must be local changes, then I push it to the repository. Pull is getting the latest from the repository. Still unsure what publish and sync do.
 package com.company;
 
+import java.math.BigInteger;
+
 public class Main {
 
     static int primeDiv = 1;
     static int largestPF = 1;
-    final static int literal = 2032665131;
+    final static long literal = 600851475143L;
     final static int[] primes = {827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997};
 
     public static void main(String[] args) {
@@ -14,11 +16,14 @@ public class Main {
         //System.out.println(myMain.isPrime(literal));
         //System.out.println(literal);
         //for (int e : primes) {
+        long startTime = System.nanoTime();
         System.out.println(literal + " is prime: " + myMain.isPrime(literal) + " and the largest PF is: " + largestPF);
         //}
+        long endTime = System.nanoTime();
+        System.out.println("Took "+(endTime - startTime) + " ns");
     }
 
-    public boolean isPrime(int num) {
+    public boolean isPrime(long num) {
         String number = num + "";
         int lastDigit = Integer.parseInt(number.charAt(number.length() - 1) + "");  //Last digit
         boolean prime = false;
@@ -48,7 +53,7 @@ public class Main {
             prime = true;
         if (prime) {
             if (num > largestPF)
-                largestPF = num;
+                largestPF = (int)num;//largest factor shouldn't go beyond 2billion as that would be close to largest long
         }
         System.out.println("LPF: " + largestPF);
 
@@ -57,14 +62,14 @@ public class Main {
         return prime;
     }
 
-    public boolean isPrimeDivisible(int num) {
+    public boolean isPrimeDivisible(long num) {
         int max = (int) Math.sqrt(num);
         for (int i = 7; i < max; i += 2) {
             if (isPrime(i)) {
                 if (num % i == 0) {
                     if (i > largestPF)
                         largestPF = i;
-                    primeDiv = num/i;
+                    //primeDiv = num/i;
                     isPrime(num/i);
                     return true;
                 }
@@ -74,7 +79,7 @@ public class Main {
     }
 
     public boolean divThree(String number) {
-        int sum = 0;
+        long sum = 0;
         for (int i = 0; i < number.length(); i++) {  //if the sum of the digits in a number is divisible by 3 it is divisible by 3 and isn't prime
             sum += Integer.parseInt(number.charAt(i) + "");
         }
